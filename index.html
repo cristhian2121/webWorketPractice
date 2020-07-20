@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ejempli 1</title>
+  </head>
+  <body>
+    <h1>Soy un apagina y mola</h1>
+    <div>
+      Ingrese un valor:
+      <input type="number" />
+    </div>
+    <button onclick="enviarMensaje()">Enviar mensaje</button>
+  </body>
+  <script>
+    var worket = new Worker("./webWorket.js");
+    var mensaje = "hola";
+    function enviarMensaje() {
+      worket.postMessage(mensaje);
+    }
+    worket.onmessage = function (event) {
+      console.log("Mensaje que llega a la pagina", event.data);
+    };
+  </script>
+</html>
